@@ -703,7 +703,7 @@ a.active {
 }
 
 .portfolio_filter {
-    padding-left: 0;
+    padding-left: auto;
     display: inline-block;
     margin: 0 auto;
     text-align: center;

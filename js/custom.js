@@ -105,10 +105,25 @@ $(document).ready(function () {
 
     //animatedModal
     $("#demo01").animatedModal({
-        modalTarget:"01",
+        modalTarget:"igvc",
     });
     $("#demo02").animatedModal({
-        modalTarget:"02",
+        modalTarget:"rcba",
+    });
+    $("#demo03").animatedModal({
+        modalTarget:"eyrc",
+    });
+    $("#demo04").animatedModal({
+        modalTarget:"tep",
+    });
+    $("#demo05").animatedModal({
+        modalTarget:"article",
+    });
+    $("#demo06").animatedModal({
+        modalTarget:"hockey",
+    });
+    $("#demo07").animatedModal({
+        modalTarget:"fyp",
     });
     // Contact Form 	
 
