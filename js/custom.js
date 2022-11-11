@@ -125,6 +125,9 @@ $(document).ready(function () {
     $("#demo07").animatedModal({
         modalTarget:"fyp",
     });
+    $("#demo08").animatedModal({
+        modalTarget:"hand",
+    });
     // Contact Form 	
 
     // validate contact form
