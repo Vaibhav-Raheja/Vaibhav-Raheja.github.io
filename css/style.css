@@ -732,13 +732,14 @@ a.active {
 
 .popup-modal {
     background: black;
+    color: white;
 }
 
 .close-popup-modal {
     float: right;
     margin: 20px;
     font-size: 22px;
-    opacity: 0;
+    opacity: 1;
     cursor: pointer;
     -webkit-transition: all .3s;
     transition: all .3s;
