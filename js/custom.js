@@ -128,6 +128,12 @@ $(document).ready(function () {
     $("#demo08").animatedModal({
         modalTarget:"hand",
     });
+    $("#demo09").animatedModal({
+        modalTarget:"skin",
+    });
+    $("#demo010").animatedModal({
+        modalTarget:"homeauto",
+    });
     // Contact Form 	
 
     // validate contact form
