@@ -134,6 +134,9 @@ $(document).ready(function () {
     $("#demo010").animatedModal({
         modalTarget:"homeauto",
     });
+    $("#demo011").animatedModal({
+        modalTarget:"drone",
+    });
     // Contact Form 	
 
     // validate contact form
