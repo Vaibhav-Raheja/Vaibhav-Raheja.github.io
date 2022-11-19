@@ -280,9 +280,10 @@ a.active {
 ==================================================*/
 
 #home {
-    background: url(../img/home-bg-2.jpg);
+    background: url(../img/home-bg-32.jpg);
     background-size: cover;
     height: 100vh;
+    color: white;
 }
 
 .table-cell {
