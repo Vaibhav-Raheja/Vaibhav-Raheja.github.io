@@ -138,7 +138,7 @@ $(document).ready(function () {
         modalTarget:"drone",
     });
     $("#demo13").animatedModal({
-        modalTarget:"racer",
+        modalTarget:"GRAIC",
     });
     // Contact Form 	
 
