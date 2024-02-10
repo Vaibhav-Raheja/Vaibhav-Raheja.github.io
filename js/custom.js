@@ -137,6 +137,9 @@ $(document).ready(function () {
     $("#demo011").animatedModal({
         modalTarget:"drone",
     });
+    $("#demo13").animatedModal({
+        modalTarget:"racer",
+    });
     // Contact Form 	
 
     // validate contact form
