@@ -23,6 +23,8 @@
 			gtag('config', 'G-8BL61YTMC1');
 		</script>
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/animations.css" />
+		<link rel="stylesheet" href="assets/css/dark-theme.css" />
 	</head>
 	<body class="is-preload">
 		<!-- Preloader -->
@@ -53,6 +55,9 @@
 						<li><a href="vaibhavvraheja@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 						<li><a href="https://medium.com/@vaibhavraheja32" class="icon brands fa-medium"><span class="label">Twitter</span></a></li>
 					</ul>
+					<button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
+						<i class="fas fa-moon"></i>
+					</button>
 				</div>
 			</header>
 
@@ -60,7 +65,7 @@
 			<div id="main">
 
 				<!-- One -->
-					<section id="one">
+					<section id="one" class="fade-in">
 						<header class="major">
 							<h2>About Me</h2>
 						</header>
@@ -73,78 +78,185 @@
 					</section>
 
 				<!-- Two -->
-					<section id="two">
+					<section id="experience" class="fade-in">
+						<header class="major">
+							<h2>Work Experience</h2>
+						</header>
+						<div class="experience-timeline">
+							<div class="experience-item">
+								<div class="experience-header">
+									<h3>Robotics Engineer</h3>
+									<h4>EarthSense, Inc.</h4>
+									<p class="experience-date">January 2025 - Present</p>
+									<p class="experience-location">Champaign, Illinois, United States</p>
+								</div>
+								<div class="experience-content">
+									<ul class="experience-list">
+										<li>Developing autonomous navigation and control systems for agricultural robotics</li>
+										<li>Implementing computer vision algorithms for crop monitoring and analysis</li>
+										<li>Working with ROS and sensor fusion for real-time robotic applications</li>
+										<li>Collaborating on machine learning models for agricultural data processing</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="experience-item">
+								<div class="experience-header">
+									<h3>Robotics Intern</h3>
+									<h4>EarthSense, Inc.</h4>
+									<p class="experience-date">August 2024 - January 2025</p>
+									<p class="experience-location">Champaign, Illinois, United States</p>
+								</div>
+								<div class="experience-content">
+									<ul class="experience-list">
+										<li>Contributed to autonomous systems development for agricultural robotics platforms</li>
+										<li>Assisted in developing and testing navigation algorithms</li>
+										<li>Participated in sensor integration and data processing pipelines</li>
+										<li>Collaborated with cross-functional teams on robotic systems optimization</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="experience-item">
+								<div class="experience-header">
+									<h3>Research Developer</h3>
+									<h4>Intelligent Motion Laboratory, University of Illinois Urbana-Champaign</h4>
+									<p class="experience-date">August 2023 - December 2023</p>
+								</div>
+								<div class="experience-content">
+									<ul class="experience-list">
+										<li>Implemented advanced facial detection and analysis techniques using FaceMesh, OpenFace 1.0, and DeepFace for robotic eye examinations</li>
+										<li>Developed head pose estimation system with ZED camera's depth tracking to enhance accuracy of facial feature detection</li>
+										<li>Engineered and simulated a robotic arm, optimizing camera placement for effective 3D mapping</li>
+										<li>Improved precision of face detection and head pose estimation for comprehensive eye examinations</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="experience-item">
+								<div class="experience-header">
+									<h3>Research Intern</h3>
+									<h4>AIIMS (All India Institute of Medical Sciences, New Delhi)</h4>
+									<p class="experience-date">2021 - April 2023</p>
+									<p class="experience-location">Mumbai, Maharashtra, India</p>
+								</div>
+								<div class="experience-content">
+									<ul class="experience-list">
+										<li>Developed and executed innovative research project financed by the Indian Council of Medical Research (ICMR)</li>
+										<li>Achieved 20% enhancement in accuracy through advanced research methodologies</li>
+										<li>Played key role in design and assembly of custom 2-directional catheter and mouthpiece integrated with camera system</li>
+										<li>Contributed to successful intubation procedures through engineering innovations</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="experience-item">
+								<div class="experience-header">
+									<h3>Intern</h3>
+									<h4>Granuler, CIO Consulting</h4>
+									<p class="experience-date">January 2021 - May 2021</p>
+									<p class="experience-location">Mumbai, Maharashtra, India</p>
+								</div>
+								<div class="experience-content">
+									<ul class="experience-list">
+										<li>Assisted in consulting projects and business process analysis</li>
+										<li>Collaborated with teams on technology solutions and implementations</li>
+										<li>Participated in client meetings and project planning sessions</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="experience-item">
+								<div class="experience-header">
+									<h3>Data QA Testing</h3>
+									<h4>Intelligence Node</h4>
+									<p class="experience-date">June 2018</p>
+									<p class="experience-location">Mumbai, Maharashtra, India</p>
+								</div>
+								<div class="experience-content">
+									<ul class="experience-list">
+										<li>Performed quality assurance testing on data processing systems</li>
+										<li>Identified and documented data inconsistencies and errors</li>
+										<li>Contributed to improving data accuracy and reliability</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</section>
+
+				<!-- Three -->
+					<section id="two" class="fade-in">
 						<h1>Projects</h1>
 						<div class="row">
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/IGVC.gif" class="image fit thumb"><img src="images/thumbs/IGVC.gif" alt="" /></a>
 								<h3>Intelligent Ground Vehicle Competition (IGVC)</h3>
 								<p>I achieved 2nd and 3rd place in the Cyber and AutoNAV challenges, respectively, at the annual international Intelligent Ground Vehicle Competition hosted at Oakland University, Michigan. In this competition, multidisciplinary teams are tasked with designing and developing autonomous vehicles that can navigate and complete specific tasks according to a set of rules.
 									During this competition, I developed a fully functioning autonomous vehicle equipped with advanced object detection, path planning, and traversal capabilities. My role involved integrating these technologies to ensure the vehicle could accurately detect and avoid obstacles, plan efficient routes, and traverse complex environments autonomously. This achievement showcases my practical skills in robotics and my ability to apply theoretical knowledge to real-world challenges.	
 								</p>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/rl-video-episode-0.gif" class="image fit thumb"><img src="images/thumbs/rl-video-episode-0.gif" alt="" /></a>
 								<h3>Reinforcement Learning for Game Optimization</h3>
 								<p>In my recent project, I optimized gameplay in BreakoutDeterministic using Deep Q-Networks (DQN) and Double DQN, achieving mean rewards of 8.04 and 10.1, respectively. The agents used an ε-greedy policy for balanced exploration and exploitation, and replay memory for stable learning. While DQN relied on reward prediction errors, Double DQN utilized a second network for more reliable training. Detailed analysis and visualizations are available on my GitHub.</p>
 							</article>
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/GRAIC.gif" class="image fit thumb"><img src="images/thumbs/GRAIC.gif" alt="" /></a>
 								<h3>Generalized RAcing Intelligence Competition (GRAIC)</h3>
 								<p>Implemented path planning and control algorithms for an autonomous racing car in the CARLA simulator. Implemented Hybrid A* search for optimal waypoint navigation in complex environments, particularly racetracks with a Proportional-Derivative (PD) controller for real-time autonomous with obstacle avoidance and adjustments of steering angle, speed, and braking, enhancing the car’s efficient navigation through racetracks.</p>
 								<a href="https://github.com/Vaibhav-Raheja/GRAIC">Github</a>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/AV.gif" class="image fit thumb"><img src="images/thumbs/AV.gif" alt="" /></a>
 								<h3>Autonomous Vehicle (GEM e2)</h3>
 								<p>In Progress: Learning on using GEMstack to control the GEM e2 Vehicle</p>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/Go1_small.gif" class="image fit thumb"><img src="images/thumbs/Go1_small.gif" alt="" /></a>
 								<h3>Reinforment Learning On Unitree Go1</h3>
 								<p>In Progress: Implementing a RL controller to replace and benchmark the Baseline MPC controller</p>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/VC.gif" class="image fit thumb"><img src="images/thumbs/VC.gif" alt="" /></a>
 								<h3>Vehicle Control</h3>
 								<p>Designed and executed a control system for steering a vehicle (GEM e2) along a specific track, which was segmented into various waypoints to assist with navigation. This control system was comprised of two main elements: a longitudinal controller for managing the vehicle's speed and a lateral controller for handling its direction.</p>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/Lane_detect.gif" class="image fit thumb"><img src="images/thumbs/Lane_detect.gif" alt="" /></a>
 								<h3>Lane Detection Using Computer Vision</h3>
 								<p>Implemented a lane detection system for an autonomous vehicle using the ROS and Gazebo platforms, leveraging the Python OpenCV library. This system processes a video feed by dividing it into individual frames and annotates each frame to distinctly outline the lanes. The process begins with a function that applies both gradient and color thresholds to identify crucial image features, resulting in a binary image that emphasizes road edges and lane markings. Following this, a perspective transformation is applied to achieve a top-down view of the lanes, providing a 2D geometric depiction. The final step involves dividing the image into horizontal segments and using a histogram to locate the lane center, identifying the area with the highest pixel density as the lane's midpoint.</p>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/Mini.gif" class="image fit thumb"><img src="images/thumbs/Mini.jpeg" alt="" /></a>
 								<h3>Robotis Mini</h3>
 								<p>In Progress: Implementing Basic Kinematics to control the Mini Robot in real world and ROS</p>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/SLAM.jpg" class="image fit thumb"><img src="images/thumbs/SLAM.jpg" alt="" /></a>
 								<h3>Lidar Based SLAM Implemention</h3>
 								<p>Developed an algorithm using ROS and Python to gather robot data from a rosbag, including LiDAR measurements and a trajectory estimated by an Extended Kalman Filter (EKF). I utilized the split-and-merge line fitting algorithm to identify and fit corners in the LiDAR data. This information, along with the robot's trajectory, facilitated the creation of a geometric map of the robot's surroundings. Additionally, a map was constructed using Simultaneous Localization and Mapping (SLAM), with the red trace representing the results from my line-fitting algorithm, while the gray map was generated using Gmapping.</p>
 							</article>
 
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/hand.png" class="image fit thumb"><img src="images/thumbs/hand.png" alt="" /></a>
 								<h3>Semi-Soft Robotic Hand</h3>
 								<p>Created a Soft Robotic Hand controlled by five individual stepper motors, enhancing dexterity and flexibility, with Arduino for control and 3D modeling and printing for construction</p>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/Particle Filter.gif" class="image fit thumb"><img src="images/thumbs/Particle Filter.gif" alt="" /></a>
 								<h3>Robot localization Using Particle Filtering</h3>
 								<p>Implemented a Monte Carlo Localization (MCL) algorithm in Python for vehicle localization within an unknown environment, utilizing simulations on ROS and Gazebo. The MCL algorithm initializes with a set of randomly generated particles and, as the vehicle moves, adjusts these particles to predict the vehicle's new position. This iterative process allows the particles to gradually converge towards the vehicle's actual location. The goal was to determine the vehicle's position using sensor data and a preconstructed environmental map. A specialized module was developed to process raw LiDAR sensor point cloud data, calculating the vehicle's distance from surrounding walls in four directions. The particle filter algorithm maintains information on each particle's position (x-y coordinates), orientation, weight, and an environmental map.</p>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/fyp1.png" class="image fit thumb"><img src="images/thumbs/fyp1.png" alt="" /></a>
 								<h3>Chronic Disease Detection System using Machine Learning</h3>
 								<p>Developed an expert system that uses patient data to diagnose a wide range of chronic conditions</p>
@@ -152,20 +264,20 @@
 								<a href="https://ieeexplore.ieee.org/abstract/document/10094382">ieeexplore.ieee.org/abstract/document/10094382</a>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/drone.gif" class="image fit thumb"><img src="images/thumbs/drone.gif" alt="" /></a>
 								<h3>Drone</h3>
 								<p>Engineered a custom surveillance drone featuring a modular 3D-printed body and high-performance 1200KV BLDC motors, controlled via a Pix hawk Flight Controller and an ESC for motor control</p>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/lane_detect.png" class="image fit thumb"><img src="images/thumbs/lane_detect.png" alt="" /></a>
 								<h3>Lane Detection using Hough Transform and Histogram</h3>
 								<p>Demonstrated a perception algorithm that is entirely based on vision or camera input. I concentrated on presenting a powerful end-to-end lane recognition approach for self-driving automobiles utilising modern computer vision techniques. I begin with a rudimentary strategy based on edge detection and polynomial regression, which is the foundational approach for recognising only straight lane lines. Using the Histogram and the Hough Transform</p>
 								<a href="https://medium.com/@vaibhavraheja32/lane-detection-using-hough-transform-and-histogram-4df44476acb7">Medium</a>
 							</article>
 
-							<article class="col-6 col-12-xsmall work-item">
+							<article class="col-6 col-12-xsmall work-item project-card">
 								<a href="images/thumbs/eyrc1.png" class="image fit thumb"><img src="images/thumbs/eyrc1.png" alt="" /></a>
 								<h2>e-Yantra Robotics Competition (eYRC) by IIT Bombay</h2>
 								<p>Participated in a competition held by IIT Bombay. Our task was to make a drone for the delivery of parcels.</p>
@@ -176,8 +288,8 @@
 						</ul> -->
 					</section>
 
-				<!-- Three -->
-					<section id="three">
+				<!-- Four -->
+					<section id="three" class="fade-in">
 						<h2>Get In Touch</h2>
 						<!-- <p>Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>
 						<div class="row">
@@ -560,6 +672,7 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script src="assets/js/theme-toggle.js"></script>
 
 	</body>
 </html>
