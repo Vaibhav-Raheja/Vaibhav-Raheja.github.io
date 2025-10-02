@@ -1,125 +1,128 @@
 <!DOCTYPE HTML>
-<!--
-	Strata by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<html lang="en">
 	<head>
-		<title>Vaibhav Raheja Portfolio</title>
+		<title>Vaibhav Raheja - Robotics Engineer Terminal</title>
 		<meta charset="utf-8" />
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+
 		<!-- SEO Meta Tags -->
-		<meta name="description" content=" Vaibhav Raheja, a passionate Robotics Software Engineer with a Master's in Autonomy and Robotics from the University of Illinois at Urbana-Champaign. Explore my portfolio showcasing projects in autonomy, computer vision, robot control, and more." />
-		<meta name="keywords" content="Vaibhav Raheja, Robotics Engineer, Machine Learning, Autonomous Vehicles, Computer Vision, Robotics Projects, University of Illinois, SLAM, Mapping, Planning" />
-		<!-- Google tag (gtag.js) -->
+		<meta name="description" content="Vaibhav Raheja - Robotics Software Engineer with expertise in Autonomy, Computer Vision, and Machine Learning. Interactive terminal-style portfolio showcasing projects in autonomous systems, SLAM, and robot control." />
+		<meta name="keywords" content="Vaibhav Raheja, Robotics Engineer, Terminal Portfolio, Machine Learning, Autonomous Vehicles, Computer Vision, Robotics Projects, University of Illinois, SLAM, ROS, Python, C++" />
+		<meta name="author" content="Vaibhav Raheja" />
+
+		<!-- Open Graph / Social Media -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Vaibhav Raheja - Robotics Engineer" />
+		<meta property="og:description" content="Interactive terminal-style portfolio of a Robotics Engineer specializing in autonomous systems and computer vision" />
+		<meta property="og:url" content="https://vaibhav-raheja.github.io/" />
+
+		<!-- Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-8BL61YTMC1"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
-
 			gtag('config', 'G-8BL61YTMC1');
 		</script>
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/animations.css" />
-		<link rel="stylesheet" href="assets/css/dark-theme.css" />
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+		<link rel="stylesheet" href="assets/css/terminal.css" />
+		<link rel="stylesheet" href="assets/css/media-viewer.css" />
+
+		<!-- Preload critical resources -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
 	</head>
-	<body class="is-preload">
-		<!-- Theme Toggle Button (Fixed Position) -->
-		<button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode">
-			<i class="fas fa-moon"></i>
-		</button>
+	<body>
 
-		<!-- Header -->
-			<header id="header">
-				<div class="inner">
-					<a href="index.html" class="image avatar"><img src="images/profile-pic (1).png" alt="" /></a>
-					<h1><strong>Vaibhav Raheja</strong>
-					<p class="intro-subtitle">
-						Robotics Engineer<br><br>
-						<b>M.Eng Robotics</b><br>
-						<i>University of Illinois at Urbana-Champaign</i><br><br>
-						<b>B.Tech Computer Engineering</b><br>
-						<i>NMIMS, Mumbai</i><br>
-					</p>
-					<ul class="icons">
-						<li><a href="https://github.com/vaibhav-raheja" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="https://www.linkedin.com/in/vaibhav-raheja/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
-						<li><a href="vaibhavvraheja@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						<li><a href="https://medium.com/@vaibhavraheja32" class="icon brands fa-medium"><span class="label">Twitter</span></a></li>
-					</ul>
-					<!-- Navigation Menu -->
-					<nav>
-						<ul class="nav-menu">
-							<li><a href="index.html" class="active">Home</a></li>
-							<li><a href="experience.html">Experience</a></li>
-							<li><a href="projects.html">Projects</a></li>
-						</ul>
-					</nav>
+		<!-- Terminal Window -->
+		<div class="terminal-window">
+
+			<!-- Terminal Header (Window Chrome) -->
+			<div class="terminal-header">
+				<div class="terminal-controls">
+					<button class="terminal-button close" aria-label="Close"></button>
+					<button class="terminal-button minimize" aria-label="Minimize"></button>
+					<button class="terminal-button maximize" aria-label="Maximize"></button>
 				</div>
-			</header>
-
-		<!-- Main -->
-			<div id="main">
-
-				<!-- About Me -->
-					<section id="one" class="fade-in">
-						<header class="major">
-							<h2>About Me</h2>
-						</header>
-						<p>I'm a passionate robotics engineer currently pursuing my Master's in Autonomy and Robotics at the University of Illinois Urbana-Champaign. My journey in robotics began at age eight, inspired by iconic robots like R2D2 and Optimus Prime, and has evolved into a dedicated pursuit of advancing robotic technologies.</p>
-						<p>As a robotics enthusiast committed to innovation, I'm actively involved in projects that underscore my belief in the increasing role of robotics in shaping our future, aiming to make a significant impact in an autonomous world.</p>
-						<ul class="actions">
-							<li><a href="https://vaibhav-raheja.github.io/CV/Vaibhav_Resume.pdf" class="button">Resume</a></li>
-						</ul>
-					</section>
-
-				<!-- Quick Links -->
-					<section id="quick-links" class="fade-in">
-						<h2>Explore</h2>
-						<div class="row">
-							<div class="col-6 col-12-xsmall">
-								<a href="experience.html" class="button fit">Work Experience</a>
-							</div>
-							<div class="col-6 col-12-xsmall">
-								<a href="projects.html" class="button fit">Projects</a>
-							</div>
-						</div>
-					</section>
-
-				<!-- Contact -->
-					<section id="contact" class="fade-in">
-						<h2>Contact</h2>
-						<div class="col-4 col-12-small">
-							<ul class="labeled-icons">
-								<li>
-									<h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-									<a href="tel:+12172029970">+1 (217) 202-9970</a>
-								</li>
-								<li>
-									<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-									<a href="mailto:Vaibhavvraheja@gmail.com">Vaibhavvraheja@gmail.com</a>
-								</li>
-								<li>
-									<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-									<a href="mailto:vraheja3@illinois.edu">vraheja3@illinois.edu</a>
-								</li>
-							</ul>
-						</div>
-					</section>
-
+				<div class="terminal-title">vaibhav@portfolio: ~</div>
+				<div class="terminal-menu">
+					<!-- Hamburger menu toggle for mobile -->
+					<button class="quick-nav-toggle" id="quick-nav-toggle" aria-label="Toggle navigation menu">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</div>
 			</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="assets/js/theme-toggle.js"></script>
+			<!-- Breadcrumb Navigation -->
+			<div class="breadcrumb-nav" id="breadcrumb-nav" style="display: none;">
+				<span class="breadcrumb-item" onclick="terminal.executeCommandFromClick('cd ~'); return false;">
+					Home
+				</span>
+				<span class="breadcrumb-separator">›</span>
+				<span id="breadcrumb-path"></span>
+				<a href="#" class="breadcrumb-back" onclick="terminal.executeCommandFromClick('cd ..'); return false;">
+					Back
+				</a>
+			</div>
+
+			<!-- Terminal Body -->
+			<div class="terminal-body">
+				<!-- Output Area -->
+				<div id="terminal-output"></div>
+
+				<!-- Input Area -->
+				<div class="terminal-input-area">
+					<span class="input-prompt">vaibhav@portfolio:~$</span>
+					<input
+						type="text"
+						id="terminal-input"
+						autocomplete="on"
+						autocorrect="off"
+						autocapitalize="off"
+						spellcheck="false"
+						aria-label="Terminal command input"
+					/>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- Quick Navigation Panel -->
+		<nav class="quick-nav" id="quick-nav">
+			<div class="quick-nav-header">QUICK NAV</div>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('about'); return false;">
+				About
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('education'); return false;">
+				Education
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('experience'); return false;">
+				Experience
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('projects'); return false;">
+				Projects
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('skills'); return false;">
+				Skills
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('contact'); return false;">
+				Contact
+			</a>
+		</nav>
+
+		<!-- Scripts - Load in Order -->
+		<script src="assets/js/data.js"></script>
+		<script src="assets/js/utils.js"></script>
+		<script src="assets/js/filesystem.js"></script>
+		<script src="assets/js/media-viewer.js"></script>
+		<script src="assets/js/animations.js"></script>
+		<script src="assets/js/commands.js"></script>
+		<script src="assets/js/terminal.js"></script>
+		<script src="assets/js/quick-nav.js"></script>
 
 	</body>
 </html>
