@@ -11,10 +11,10 @@
     const body = document.body;
     const THEME_KEY = 'preferred-theme';
 
-    // Check for saved theme preference or default to light mode
-    const currentTheme = localStorage.getItem(THEME_KEY);
+    // Check for saved theme preference or default to dark mode
+    const currentTheme = localStorage.getItem(THEME_KEY) || 'dark';
 
-    // Apply saved theme on page load
+    // Apply theme on page load (default to dark)
     if (currentTheme === 'dark') {
         body.classList.add('dark-theme');
         updateToggleIcon(true);
