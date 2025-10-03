@@ -285,8 +285,8 @@ const Commands = {
 			return;
 		}
 
-		// List items in simple format
-		contents.forEach(item => {
+		// Collect all items into a single line
+		const items = contents.map(item => {
 			let color;
 			if (item.type === 'directory') {
 				color = Utils.colors.folder;
@@ -301,10 +301,11 @@ const Commands = {
 			                 item.type === 'media' ? `view ${item.name}` :
 			                 `cat ${item.name}`;
 
-			const link = `<a href="#" class="fs-item" onclick="terminal.executeCommandFromClick('${command}'); return false;">${color(itemName)}</a>`;
-
-			terminal.print(link);
+			return `<a href="#" class="fs-item" onclick="terminal.executeCommandFromClick('${command}'); return false;">${color(itemName)}</a>`;
 		});
+
+		// Print all items on a single line with spaces
+		terminal.print(items.join('  '));
 
 		// Show back option at the end
 		const currentPath = FileSystem.pwd();
@@ -327,6 +328,22 @@ const Commands = {
 
 		if (!result.success) {
 			terminal.printError(`cd: ${target}: No such file or directory`);
+			terminal.print('');
+
+			// Show helpful suggestions
+			terminal.print(Utils.colors.secondary('💡 Suggestions:'));
+			terminal.print(Utils.colors.secondary('  • Type "cd ~" or "cd" to go home'));
+			terminal.print(Utils.colors.secondary('  • Type "cd .." to go back one directory'));
+			terminal.print(Utils.colors.secondary('  • Type "ls" to see what\'s in the current directory'));
+			terminal.print(Utils.colors.secondary('  • Type "pwd" to see where you are'));
+
+			// Add clickable options
+			terminal.print('');
+			const homeLink = `<a href="#" onclick="terminal.executeCommandFromClick('cd ~'); return false;" style="color: var(--terminal-link); text-decoration: underline;">[Go Home]</a>`;
+			const backLink = `<a href="#" onclick="terminal.executeCommandFromClick('cd ..'); return false;" style="color: var(--terminal-link); text-decoration: underline;">[Go Back]</a>`;
+			const lsLink = `<a href="#" onclick="terminal.executeCommandFromClick('ls'); return false;" style="color: var(--terminal-link); text-decoration: underline;">[List Files]</a>`;
+
+			terminal.print(`${homeLink}  ${backLink}  ${lsLink}`);
 			return;
 		}
 

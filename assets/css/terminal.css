@@ -151,7 +151,6 @@ body {
 
 /* Terminal Output Area */
 #terminal-output {
-	min-height: calc(100% - 50px);
 	padding-bottom: 20px;
 }
 
@@ -489,11 +488,12 @@ body {
 	.terminal-body {
 		font-size: 16px;
 		padding: 15px;
+		padding-bottom: 80px; /* Extra space for input area */
 	}
 
 	.terminal-title {
 		font-size: 12px;
-		margin: 0 20px;
+		margin: 0 60px 0 20px; /* More right margin for hamburger menu */
 	}
 
 	.command-grid {
@@ -502,8 +502,19 @@ body {
 	}
 
 	.terminal-button {
-		width: 10px;
-		height: 10px;
+		width: 12px;
+		height: 12px;
+	}
+
+	/* Input area with better touch spacing */
+	.terminal-input-area {
+		padding: 20px;
+		min-height: 60px;
+	}
+
+	#terminal-input {
+		font-size: 16px; /* Prevent zoom on iOS */
+		padding: 8px 0;
 	}
 
 	.auto-suggest {
@@ -515,13 +526,27 @@ body {
 	/* Mobile: Show hamburger menu for quick nav */
 	.quick-nav-toggle {
 		display: flex;
+		width: 44px;
+		height: 44px;
+		padding: 10px;
+		position: absolute;
+		right: 5px;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 
 	.quick-nav {
 		width: 100%;
+		max-width: 320px;
 	}
 
-	/* File boxes should be larger on mobile */
+	.quick-nav-item {
+		padding: 16px 20px;
+		font-size: 16px;
+		min-height: 48px;
+	}
+
+	/* File boxes should be larger on mobile for better touch targets */
 	.file-box {
 		min-height: 80px;
 		padding: 20px;
@@ -535,10 +560,20 @@ body {
 		font-size: 20px;
 	}
 
+	/* Filesystem items - larger touch targets */
+	.fs-item {
+		display: block;
+		padding: 8px 0;
+		margin: 4px 0;
+		font-size: 16px;
+	}
+
 	.back-button {
 		width: 100%;
 		text-align: center;
-		padding: 15px;
+		padding: 16px;
+		font-size: 16px;
+		min-height: 48px;
 	}
 
 	.welcome-button-grid {
@@ -546,20 +581,54 @@ body {
 		gap: 15px;
 	}
 
+	/* Breadcrumb with better overflow */
 	.breadcrumb-nav {
 		overflow-x: auto;
 		white-space: nowrap;
+		-webkit-overflow-scrolling: touch;
+		scrollbar-width: none;
+	}
+
+	.breadcrumb-nav::-webkit-scrollbar {
+		display: none;
+	}
+
+	.breadcrumb-back {
+		padding: 10px 20px;
+		font-size: 16px;
+		min-height: 44px;
 	}
 
 	/* Scale ASCII art on mobile */
 	.ascii-art {
 		font-size: 0.7em;
 		line-height: 1.1;
+		overflow-x: auto;
 	}
 
 	/* Make output lines wrap better */
 	.output-line {
 		word-break: break-word;
+	}
+
+	/* Project list items - better touch targets */
+	.project-list-item {
+		padding: 16px;
+		margin: 12px 0;
+		min-height: 48px;
+	}
+
+	/* Command items */
+	.command-item {
+		padding: 16px;
+		min-height: 48px;
+	}
+
+	/* Auto-suggest items */
+	.auto-suggest-item {
+		padding: 12px 16px;
+		font-size: 16px;
+		min-height: 44px;
 	}
 }
 
@@ -567,6 +636,33 @@ body {
 	.terminal-body {
 		font-size: 14px;
 		padding: 10px;
+		padding-bottom: 80px;
+	}
+
+	.terminal-header {
+		padding: 6px 10px;
+	}
+
+	.terminal-title {
+		font-size: 11px;
+		margin: 0 50px 0 15px;
+	}
+
+	.input-prompt {
+		font-size: 14px;
+	}
+
+	#terminal-input {
+		font-size: 16px; /* Important: prevents auto-zoom on iOS */
+	}
+
+	.terminal-button {
+		width: 10px;
+		height: 10px;
+	}
+
+	.terminal-controls {
+		gap: 6px;
 	}
 
 	/* Further scale ASCII art on small screens */
@@ -574,20 +670,11 @@ body {
 		font-size: 0.55em;
 		line-height: 1;
 	}
-}
 
-	.terminal-header {
-		padding: 6px 10px;
-	}
-
-	.input-prompt {
-		font-size: 13px;
-	}
-
-	.terminal-button {
-		width: 8px;
-		height: 8px;
-		gap: 6px;
+	/* Quick nav toggle - larger on small screens */
+	.quick-nav-toggle {
+		width: 44px;
+		height: 44px;
 	}
 }
 

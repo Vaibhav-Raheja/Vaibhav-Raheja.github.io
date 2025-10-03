@@ -30,8 +30,10 @@ class Terminal {
 		// Show welcome screen
 		this.showWelcome();
 
-		// Focus on input
-		this.focusInput();
+		// Focus on input (desktop only - avoid keyboard popup on mobile)
+		if (!Utils.isMobile()) {
+			this.focusInput();
+		}
 
 		// Mobile optimizations
 		if (Utils.isMobile()) {
@@ -46,8 +48,10 @@ class Terminal {
 		// Input change for auto-suggest
 		this.input.addEventListener('input', () => this.handleInput());
 
-		// Click anywhere to focus
-		document.addEventListener('click', () => this.focusInput());
+		// Click anywhere to focus (desktop only - prevents keyboard popup on mobile)
+		if (!Utils.isMobile()) {
+			document.addEventListener('click', () => this.focusInput());
+		}
 
 		// Skip animation on any key press
 		document.addEventListener('keydown', () => {
@@ -350,16 +354,14 @@ class Terminal {
 		// Adjust font sizes
 		document.documentElement.style.fontSize = '14px';
 
-		// Add touch event for input focus
-		this.output.addEventListener('touchstart', () => {
-			this.focusInput();
-		});
-
 		// Virtual keyboard handling
 		this.input.setAttribute('autocomplete', 'off');
 		this.input.setAttribute('autocorrect', 'off');
 		this.input.setAttribute('autocapitalize', 'off');
 		this.input.setAttribute('spellcheck', 'false');
+
+		// Allow manual tap on input field only - no auto-focus on touch
+		// This prevents keyboard from constantly popping up on mobile
 	}
 
 	// Welcome screen
