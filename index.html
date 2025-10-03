@@ -1,565 +1,128 @@
 <!DOCTYPE HTML>
-<!--
-	Strata by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<html lang="en">
 	<head>
-		<title>Vaibhav Raheja Portfolio</title>
+		<title>Vaibhav Raheja - Robotics Engineer Terminal</title>
 		<meta charset="utf-8" />
 		<link rel="icon" href="images/favicon.ico" type="image/x-icon">
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+
 		<!-- SEO Meta Tags -->
-		<meta name="description" content=" Vaibhav Raheja, a passionate Robotics Software Engineer with a Master's in Autonomy and Robotics from the University of Illinois at Urbana-Champaign. Explore my portfolio showcasing projects in autonomy, computer vision, robot control, and more." />
-		<meta name="keywords" content="Vaibhav Raheja, Robotics Engineer, Machine Learning, Autonomous Vehicles, Computer Vision, Robotics Projects, University of Illinois, SLAM, Mapping, Planning" />
-		<!-- Google tag (gtag.js) -->
+		<meta name="description" content="Vaibhav Raheja - Robotics Software Engineer with expertise in Autonomy, Computer Vision, and Machine Learning. Interactive terminal-style portfolio showcasing projects in autonomous systems, SLAM, and robot control." />
+		<meta name="keywords" content="Vaibhav Raheja, Robotics Engineer, Terminal Portfolio, Machine Learning, Autonomous Vehicles, Computer Vision, Robotics Projects, University of Illinois, SLAM, ROS, Python, C++" />
+		<meta name="author" content="Vaibhav Raheja" />
+
+		<!-- Open Graph / Social Media -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Vaibhav Raheja - Robotics Engineer" />
+		<meta property="og:description" content="Interactive terminal-style portfolio of a Robotics Engineer specializing in autonomous systems and computer vision" />
+		<meta property="og:url" content="https://vaibhav-raheja.github.io/" />
+
+		<!-- Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-8BL61YTMC1"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
 			gtag('js', new Date());
-			
 			gtag('config', 'G-8BL61YTMC1');
 		</script>
-		<link rel="stylesheet" href="assets/css/main.css" />
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+		<link rel="stylesheet" href="assets/css/terminal.css" />
+		<link rel="stylesheet" href="assets/css/media-viewer.css" />
+
+		<!-- Preload critical resources -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
 	</head>
-	<body class="is-preload">
-		<!-- Preloader -->
-		<div id="preloader">
-			<div id="status">
-	
-				<div class="preloader" aria-busy="true" aria-label="Loading, please wait." role="progressbar">
+	<body>
+
+		<!-- Terminal Window -->
+		<div class="terminal-window">
+
+			<!-- Terminal Header (Window Chrome) -->
+			<div class="terminal-header">
+				<div class="terminal-controls">
+					<button class="terminal-button close" aria-label="Close"></button>
+					<button class="terminal-button minimize" aria-label="Minimize"></button>
+					<button class="terminal-button maximize" aria-label="Maximize"></button>
 				</div>
-	
+				<div class="terminal-title">vaibhav@portfolio: ~</div>
+				<div class="terminal-menu">
+					<!-- Hamburger menu toggle for mobile -->
+					<button class="quick-nav-toggle" id="quick-nav-toggle" aria-label="Toggle navigation menu">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</div>
 			</div>
+
+			<!-- Breadcrumb Navigation -->
+			<div class="breadcrumb-nav" id="breadcrumb-nav" style="display: none;">
+				<span class="breadcrumb-item" onclick="terminal.executeCommandFromClick('cd ~'); return false;">
+					Home
+				</span>
+				<span class="breadcrumb-separator">›</span>
+				<span id="breadcrumb-path"></span>
+				<a href="#" class="breadcrumb-back" onclick="terminal.executeCommandFromClick('cd ..'); return false;">
+					Back
+				</a>
+			</div>
+
+			<!-- Terminal Body -->
+			<div class="terminal-body">
+				<!-- Output Area -->
+				<div id="terminal-output"></div>
+
+				<!-- Input Area -->
+				<div class="terminal-input-area">
+					<span class="input-prompt">vaibhav@portfolio:~$</span>
+					<input
+						type="text"
+						id="terminal-input"
+						autocomplete="on"
+						autocorrect="off"
+						autocapitalize="off"
+						spellcheck="false"
+						aria-label="Terminal command input"
+					/>
+				</div>
+			</div>
+
 		</div>
 
-		<!-- Header -->
-			<header id="header">
-				<div class="inner">
-					<a href="#" class="image avatar"><img src="images/profile-pic (1).png" alt="" /></a>
-					<h1><strong>Vaibhav Raheja</strong>
-					<p class="intro-subtitle">
-						Robotics Engineer<br><br>
-						<br><b>M.Eng Robotics</b><br>
-						<i>University of Illinois at Urbana-Champaign</i><br>
-						<b>B.Tech computer Engineering</b><br>
-						<i>NMIMS, Mumbai</i><br>
-					</p>
-					<ul class="icons">
-						<li><a href="https://github.com/vaibhav-raheja" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="https://www.linkedin.com/in/vaibhav-raheja/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
-						<li><a href="vaibhavvraheja@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						<li><a href="https://medium.com/@vaibhavraheja32" class="icon brands fa-medium"><span class="label">Twitter</span></a></li>
-					</ul>
-				</div>
-			</header>
+		<!-- Quick Navigation Panel -->
+		<nav class="quick-nav" id="quick-nav">
+			<div class="quick-nav-header">QUICK NAV</div>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('about'); return false;">
+				About
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('education'); return false;">
+				Education
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('experience'); return false;">
+				Experience
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('projects'); return false;">
+				Projects
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('skills'); return false;">
+				Skills
+			</a>
+			<a href="#" class="quick-nav-item" onclick="terminal.executeCommandFromClick('contact'); return false;">
+				Contact
+			</a>
+		</nav>
 
-		<!-- Main -->
-			<div id="main">
-
-				<!-- One -->
-					<section id="one">
-						<header class="major">
-							<h2>About Me</h2>
-						</header>
-						<p>Welcome to my portfolio! I'm Vaibhav Raheja, a passionate robotics engineer currently pursuing my Master's in Autonomy and Robotics at the University of Illinois Urbana-Champaign. My journey in robotics began at the age of eight, inspired by iconic robots like R2D2 and Optimus Prime, and has since evolved into a dedicated pursuit of advancing robotic technologies.</p>
-						<p>As a robotics enthusiast committed to innovation, I am actively involved in projects that underscore my belief in the increasing role of robotics in shaping our future, aiming to make a significant impact in an autonomous world.</p>
-						</p>
-						<ul class="actions">
-							<li><a href="https://vaibhav-raheja.github.io/CV/Vaibhav_Resume.pdf" class="button">Resume</a></li>
-						</ul>
-					</section>
-
-				<!-- Two -->
-					<section id="two">
-						<h1>Projects</h1>
-						<div class="row">
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/IGVC.gif" class="image fit thumb"><img src="images/thumbs/IGVC.gif" alt="" /></a>
-								<h3>Intelligent Ground Vehicle Competition (IGVC)</h3>
-								<p>I achieved 2nd and 3rd place in the Cyber and AutoNAV challenges, respectively, at the annual international Intelligent Ground Vehicle Competition hosted at Oakland University, Michigan. In this competition, multidisciplinary teams are tasked with designing and developing autonomous vehicles that can navigate and complete specific tasks according to a set of rules.
-									During this competition, I developed a fully functioning autonomous vehicle equipped with advanced object detection, path planning, and traversal capabilities. My role involved integrating these technologies to ensure the vehicle could accurately detect and avoid obstacles, plan efficient routes, and traverse complex environments autonomously. This achievement showcases my practical skills in robotics and my ability to apply theoretical knowledge to real-world challenges.	
-								</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/rl-video-episode-0.gif" class="image fit thumb"><img src="images/thumbs/rl-video-episode-0.gif" alt="" /></a>
-								<h3>Reinforcement Learning for Game Optimization</h3>
-								<p>In my recent project, I optimized gameplay in BreakoutDeterministic using Deep Q-Networks (DQN) and Double DQN, achieving mean rewards of 8.04 and 10.1, respectively. The agents used an ε-greedy policy for balanced exploration and exploitation, and replay memory for stable learning. While DQN relied on reward prediction errors, Double DQN utilized a second network for more reliable training. Detailed analysis and visualizations are available on my GitHub.</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/GRAIC.gif" class="image fit thumb"><img src="images/thumbs/GRAIC.gif" alt="" /></a>
-								<h3>Generalized RAcing Intelligence Competition (GRAIC)</h3>
-								<p>Implemented path planning and control algorithms for an autonomous racing car in the CARLA simulator. Implemented Hybrid A* search for optimal waypoint navigation in complex environments, particularly racetracks with a Proportional-Derivative (PD) controller for real-time autonomous with obstacle avoidance and adjustments of steering angle, speed, and braking, enhancing the car’s efficient navigation through racetracks.</p>
-								<a href="https://github.com/Vaibhav-Raheja/GRAIC">Github</a>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/AV.gif" class="image fit thumb"><img src="images/thumbs/AV.gif" alt="" /></a>
-								<h3>Autonomous Vehicle (GEM e2)</h3>
-								<p>In Progress: Learning on using GEMstack to control the GEM e2 Vehicle</p>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/Go1_small.gif" class="image fit thumb"><img src="images/thumbs/Go1_small.gif" alt="" /></a>
-								<h3>Reinforment Learning On Unitree Go1</h3>
-								<p>In Progress: Implementing a RL controller to replace and benchmark the Baseline MPC controller</p>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/VC.gif" class="image fit thumb"><img src="images/thumbs/VC.gif" alt="" /></a>
-								<h3>Vehicle Control</h3>
-								<p>Designed and executed a control system for steering a vehicle (GEM e2) along a specific track, which was segmented into various waypoints to assist with navigation. This control system was comprised of two main elements: a longitudinal controller for managing the vehicle's speed and a lateral controller for handling its direction.</p>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/Lane_detect.gif" class="image fit thumb"><img src="images/thumbs/Lane_detect.gif" alt="" /></a>
-								<h3>Lane Detection Using Computer Vision</h3>
-								<p>Implemented a lane detection system for an autonomous vehicle using the ROS and Gazebo platforms, leveraging the Python OpenCV library. This system processes a video feed by dividing it into individual frames and annotates each frame to distinctly outline the lanes. The process begins with a function that applies both gradient and color thresholds to identify crucial image features, resulting in a binary image that emphasizes road edges and lane markings. Following this, a perspective transformation is applied to achieve a top-down view of the lanes, providing a 2D geometric depiction. The final step involves dividing the image into horizontal segments and using a histogram to locate the lane center, identifying the area with the highest pixel density as the lane's midpoint.</p>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/Mini.gif" class="image fit thumb"><img src="images/thumbs/Mini.jpeg" alt="" /></a>
-								<h3>Robotis Mini</h3>
-								<p>In Progress: Implementing Basic Kinematics to control the Mini Robot in real world and ROS</p>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/SLAM.jpg" class="image fit thumb"><img src="images/thumbs/SLAM.jpg" alt="" /></a>
-								<h3>Lidar Based SLAM Implemention</h3>
-								<p>Developed an algorithm using ROS and Python to gather robot data from a rosbag, including LiDAR measurements and a trajectory estimated by an Extended Kalman Filter (EKF). I utilized the split-and-merge line fitting algorithm to identify and fit corners in the LiDAR data. This information, along with the robot's trajectory, facilitated the creation of a geometric map of the robot's surroundings. Additionally, a map was constructed using Simultaneous Localization and Mapping (SLAM), with the red trace representing the results from my line-fitting algorithm, while the gray map was generated using Gmapping.</p>
-							</article>
-
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/hand.png" class="image fit thumb"><img src="images/thumbs/hand.png" alt="" /></a>
-								<h3>Semi-Soft Robotic Hand</h3>
-								<p>Created a Soft Robotic Hand controlled by five individual stepper motors, enhancing dexterity and flexibility, with Arduino for control and 3D modeling and printing for construction</p>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/Particle Filter.gif" class="image fit thumb"><img src="images/thumbs/Particle Filter.gif" alt="" /></a>
-								<h3>Robot localization Using Particle Filtering</h3>
-								<p>Implemented a Monte Carlo Localization (MCL) algorithm in Python for vehicle localization within an unknown environment, utilizing simulations on ROS and Gazebo. The MCL algorithm initializes with a set of randomly generated particles and, as the vehicle moves, adjusts these particles to predict the vehicle's new position. This iterative process allows the particles to gradually converge towards the vehicle's actual location. The goal was to determine the vehicle's position using sensor data and a preconstructed environmental map. A specialized module was developed to process raw LiDAR sensor point cloud data, calculating the vehicle's distance from surrounding walls in four directions. The particle filter algorithm maintains information on each particle's position (x-y coordinates), orientation, weight, and an environmental map.</p>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/fyp1.png" class="image fit thumb"><img src="images/thumbs/fyp1.png" alt="" /></a>
-								<h3>Chronic Disease Detection System using Machine Learning</h3>
-								<p>Developed an expert system that uses patient data to diagnose a wide range of chronic conditions</p>
-								<p> We used Logistic Regression and Random Forest to detect chronic kidney disease; for diabetes, we used Logistic Regression (LR) and K-Nearest Neighbor (KNN); for heart disease, we used Random Forest Regression and Decision Tree; and for pneumonia and COVID-19, we used Convolutional Neural Network (CNN) on chest x-rays. I was primarily in charge of combining all four models and developing the model to detect pneumonia and COVID - 19.</p>
-								<a href="https://ieeexplore.ieee.org/abstract/document/10094382">ieeexplore.ieee.org/abstract/document/10094382</a>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/drone.gif" class="image fit thumb"><img src="images/thumbs/drone.gif" alt="" /></a>
-								<h3>Drone</h3>
-								<p>Engineered a custom surveillance drone featuring a modular 3D-printed body and high-performance 1200KV BLDC motors, controlled via a Pix hawk Flight Controller and an ESC for motor control</p>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/lane_detect.png" class="image fit thumb"><img src="images/thumbs/lane_detect.png" alt="" /></a>
-								<h3>Lane Detection using Hough Transform and Histogram</h3>
-								<p>Demonstrated a perception algorithm that is entirely based on vision or camera input. I concentrated on presenting a powerful end-to-end lane recognition approach for self-driving automobiles utilising modern computer vision techniques. I begin with a rudimentary strategy based on edge detection and polynomial regression, which is the foundational approach for recognising only straight lane lines. Using the Histogram and the Hough Transform</p>
-								<a href="https://medium.com/@vaibhavraheja32/lane-detection-using-hough-transform-and-histogram-4df44476acb7">Medium</a>
-							</article>
-
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/thumbs/eyrc1.png" class="image fit thumb"><img src="images/thumbs/eyrc1.png" alt="" /></a>
-								<h2>e-Yantra Robotics Competition (eYRC) by IIT Bombay</h2>
-								<p>Participated in a competition held by IIT Bombay. Our task was to make a drone for the delivery of parcels.</p>
-							</article>
-						</div>
-						<!-- <ul class="actions">
-							<li><a href="#" class="button">Full Portfolio</a></li>
-						</ul> -->
-					</section>
-
-				<!-- Three -->
-					<section id="three">
-						<h2>Get In Touch</h2>
-						<!-- <p>Accumsan pellentesque commodo blandit enim arcu non at amet id arcu magna. Accumsan orci faucibus id eu lorem semper nunc nisi lorem vulputate lorem neque lorem ipsum dolor.</p>
-						<div class="row">
-							<div class="col-8 col-12-small">
-								<form method="post" action="#">
-									<div class="row gtr-uniform gtr-50">
-										<div class="col-6 col-12-xsmall"><input type="text" name="name" id="name" placeholder="Name" /></div>
-										<div class="col-6 col-12-xsmall"><input type="email" name="email" id="email" placeholder="Email" /></div>
-										<div class="col-12"><textarea name="message" id="message" placeholder="Message" rows="4"></textarea></div>
-									</div>
-								</form>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" /></li>
-								</ul>
-							</div> -->
-							<div class="col-4 col-12-small">
-								<ul class="labeled-icons">
-									<!-- <li>
-										<h3 class="icon solid fa-home"><span class="label">Address</span></h3>
-										1234 Somewhere Rd.<br />
-										Nashville, TN 00000<br />
-										United States
-									</li> -->
-									<li>
-										<h3 class="icon solid fa-mobile-alt"><span class="label">Phone</span></h3>
-										<a href="+1(217)-202-9970">+1 (217)-202-9970</a>
-									</li>
-									<li>
-										<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-										<a href="Vaibhavvraheja@gmail.com">Vaibhavvraheja@gmail.com</a>
-									</li>
-									<li>
-									<h3 class="icon solid fa-envelope"><span class="label">Email</span></h3>
-									<a href="vraheja3@illinois.edu">vraheja3@illinois.edu</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</section>
-
-				<!-- Four -->
-				<!--
-					<section id="four">
-						<h2>Elements</h2>
-
-						<section>
-							<h4>Text</h4>
-							<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-							This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-							This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-							<hr />
-							<header>
-								<h4>Heading with a Subtitle</h4>
-								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-							</header>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-							<header>
-								<h5>Heading with a Subtitle</h5>
-								<p>Lorem ipsum dolor sit amet nullam id egestas urna aliquam</p>
-							</header>
-							<p>Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
-							<hr />
-							<h2>Heading Level 2</h2>
-							<h3>Heading Level 3</h3>
-							<h4>Heading Level 4</h4>
-							<h5>Heading Level 5</h5>
-							<h6>Heading Level 6</h6>
-							<hr />
-							<h5>Blockquote</h5>
-							<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-							<h5>Preformatted</h5>
-							<pre><code>i = 0;
-
-while (!deck.isInOrder()) {
-print 'Iteration ' + i;
-deck.shuffle();
-i++;
-}
-
-print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
-						</section>
-
-						<section>
-							<h4>Lists</h4>
-							<div class="row">
-								<div class="col-6 col-12-xsmall">
-									<h5>Unordered</h5>
-									<ul>
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Sagittis adipiscing lorem eleifend.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-									</ul>
-									<h5>Alternate</h5>
-									<ul class="alt">
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Sagittis adipiscing lorem eleifend.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-xsmall">
-									<h5>Ordered</h5>
-									<ol>
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Etiam vel felis at lorem sed viverra.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-										<li>Dolor pulvinar etiam magna etiam.</li>
-										<li>Etiam vel felis at lorem sed viverra.</li>
-										<li>Felis enim feugiat dolore viverra.</li>
-									</ol>
-									<h5>Icons</h5>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-										<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-										<li><a href="#" class="icon brands fa-tumblr"><span class="label">Tumblr</span></a></li>
-									</ul>
-								</div>
-							</div>
-							<h5>Actions</h5>
-							<ul class="actions">
-								<li><a href="#" class="button primary">Default</a></li>
-								<li><a href="#" class="button">Default</a></li>
-							</ul>
-							<ul class="actions small">
-								<li><a href="#" class="button primary small">Small</a></li>
-								<li><a href="#" class="button small">Small</a></li>
-							</ul>
-							<div class="row">
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary small">Small</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary fit">Default</a></li>
-										<li><a href="#" class="button fit">Default</a></li>
-									</ul>
-								</div>
-								<div class="col-6 col-12-small">
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary small fit">Small</a></li>
-										<li><a href="#" class="button small fit">Small</a></li>
-									</ul>
-								</div>
-							</div>
-						</section>
-
-						<section>
-							<h4>Table</h4>
-							<h5>Default</h5>
-							<div class="table-wrapper">
-								<table>
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Description</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Item One</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Two</td>
-											<td>Vis ac commodo adipiscing arcu aliquet.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Three</td>
-											<td> Morbi faucibus arcu accumsan lorem.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Four</td>
-											<td>Vitae integer tempus condimentum.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Five</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr>
-											<td colspan="2"></td>
-											<td>100.00</td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
-
-							<h5>Alternate</h5>
-							<div class="table-wrapper">
-								<table class="alt">
-									<thead>
-										<tr>
-											<th>Name</th>
-											<th>Description</th>
-											<th>Price</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>Item One</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Two</td>
-											<td>Vis ac commodo adipiscing arcu aliquet.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Three</td>
-											<td> Morbi faucibus arcu accumsan lorem.</td>
-											<td>29.99</td>
-										</tr>
-										<tr>
-											<td>Item Four</td>
-											<td>Vitae integer tempus condimentum.</td>
-											<td>19.99</td>
-										</tr>
-										<tr>
-											<td>Item Five</td>
-											<td>Ante turpis integer aliquet porttitor.</td>
-											<td>29.99</td>
-										</tr>
-									</tbody>
-									<tfoot>
-										<tr>
-											<td colspan="2"></td>
-											<td>100.00</td>
-										</tr>
-									</tfoot>
-								</table>
-							</div>
-						</section>
-
-						<section>
-							<h4>Buttons</h4>
-							<ul class="actions">
-								<li><a href="#" class="button primary">Primary</a></li>
-								<li><a href="#" class="button">Default</a></li>
-							</ul>
-							<ul class="actions">
-								<li><a href="#" class="button large">Large</a></li>
-								<li><a href="#" class="button">Default</a></li>
-								<li><a href="#" class="button small">Small</a></li>
-							</ul>
-							<ul class="actions fit">
-								<li><a href="#" class="button primary fit">Fit</a></li>
-								<li><a href="#" class="button fit">Fit</a></li>
-							</ul>
-							<ul class="actions fit small">
-								<li><a href="#" class="button primary fit small">Fit + Small</a></li>
-								<li><a href="#" class="button fit small">Fit + Small</a></li>
-							</ul>
-							<ul class="actions">
-								<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-								<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-							</ul>
-							<ul class="actions">
-								<li><span class="button primary disabled">Primary</span></li>
-								<li><span class="button disabled">Default</span></li>
-							</ul>
-						</section>
-
-						<section>
-							<h4>Form</h4>
-							<form method="post" action="#">
-								<div class="row gtr-uniform gtr-50">
-									<div class="col-6 col-12-xsmall">
-										<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
-									</div>
-									<div class="col-6 col-12-xsmall">
-										<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
-									</div>
-									<div class="col-12">
-										<select name="demo-category" id="demo-category">
-											<option value="">- Category -</option>
-											<option value="1">Manufacturing</option>
-											<option value="1">Shipping</option>
-											<option value="1">Administration</option>
-											<option value="1">Human Resources</option>
-										</select>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-										<label for="demo-priority-low">Low Priority</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-normal" name="demo-priority">
-										<label for="demo-priority-normal">Normal Priority</label>
-									</div>
-									<div class="col-4 col-12-small">
-										<input type="radio" id="demo-priority-high" name="demo-priority">
-										<label for="demo-priority-high">High Priority</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-copy" name="demo-copy">
-										<label for="demo-copy">Email me a copy of this message</label>
-									</div>
-									<div class="col-6 col-12-small">
-										<input type="checkbox" id="demo-human" name="demo-human" checked>
-										<label for="demo-human">I am a human and not a robot</label>
-									</div>
-									<div class="col-12">
-										<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-									</div>
-									<div class="col-12">
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</div>
-								</div>
-							</form>
-						</section>
-
-						<section>
-							<h4>Image</h4>
-							<h5>Fit</h5>
-							<div class="box alt">
-								<div class="row gtr-50 gtr-uniform">
-									<div class="col-12"><span class="image fit"><img src="images/fulls/05.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/04.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/05.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/06.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/03.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/02.jpg" alt="" /></span></div>
-									<div class="col-4"><span class="image fit"><img src="images/thumbs/01.jpg" alt="" /></span></div>
-								</div>
-							</div>
-							<h5>Left &amp; Right</h5>
-							<p><span class="image left"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-							<p><span class="image right"><img src="images/avatar.jpg" alt="" /></span>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.</p>
-						</section>
-
-					</section>
-				-->
-
-			</div>
-
-		<!-- Footer -->
-<!-- 			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="https://github.com/vaibhav-raheja" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="https://www.linkedin.com/in/vaibhav-raheja/" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
-						<li><a href="vaibhavvraheja@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-						<li><a href="https://medium.com/@vaibhavraheja32" class="icon brands fa-medium"><span class="label">Twitter</span></a></li>
-					</ul>
-					<!-- <ul class="copyright">
-						<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul> -->
-				</div>
-			</footer> -->
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<!-- Scripts - Load in Order -->
+		<script src="assets/js/data.js"></script>
+		<script src="assets/js/utils.js"></script>
+		<script src="assets/js/filesystem.js"></script>
+		<script src="assets/js/media-viewer.js"></script>
+		<script src="assets/js/animations.js"></script>
+		<script src="assets/js/commands.js"></script>
+		<script src="assets/js/terminal.js"></script>
+		<script src="assets/js/quick-nav.js"></script>
 
 	</body>
 </html>
