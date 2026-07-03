@@ -1,41 +1,14 @@
 (function () {
   'use strict';
 
-  /* ── Scroll reveal ─────────────────────────────────────────────── */
-  function initScrollReveal() {
-    if (!window.IntersectionObserver) return;
-
-    // Mark elements to reveal
-    var targets = [
-      '.section__header',
-      '.timeline__item',
-      '.project',
-      '.capability-list dt',
-      '.capability-list dd',
-      '.about',
-      '.contact',
-      '.site-footer',
-    ];
-
-    var els = document.querySelectorAll(targets.join(','));
-    els.forEach(function (el) {
-      el.classList.add('will-reveal');
-    });
-
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-    els.forEach(function (el) { io.observe(el); });
+  function prefersReducedMotion() {
+    return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   }
 
   /* ── Hero entrance ─────────────────────────────────────────────── */
   function initHeroEntrance() {
+    if (prefersReducedMotion()) return;
+
     var lines = document.querySelectorAll('.hero-title__line');
     var lede  = document.querySelector('.hero__lede');
     var actions = document.querySelector('.hero__actions');
@@ -84,6 +57,8 @@
 
   /* ── Project card magnetic hover ──────────────────────────────── */
   function initProjectHover() {
+    if (prefersReducedMotion()) return;
+
     document.querySelectorAll('.project__media').forEach(function (fig) {
       fig.addEventListener('mousemove', function (e) {
         var rect = fig.getBoundingClientRect();
@@ -103,7 +78,6 @@
   /* ── Boot ──────────────────────────────────────────────────────── */
   function init() {
     initHeroEntrance();
-    initScrollReveal();
     initProjectHover();
   }
 

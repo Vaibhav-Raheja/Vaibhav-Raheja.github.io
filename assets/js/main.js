@@ -191,24 +191,23 @@
       }
 
       const mediaAttrs = {
-        class: project.gif ? 'project__media project__media--gif' : 'project__media',
+        class: 'project__media',
         'data-project-media': project.id
       };
-      if (project.gif) {
-        mediaAttrs.tabindex = '0';
-        mediaAttrs['aria-label'] = 'Preview animation for ' + project.title;
-      }
 
       let mediaEl;
       if (project.video) {
         const vid = document.createElement('video');
-        vid.autoplay = true;
         vid.loop = true;
         vid.muted = true;
+        vid.setAttribute('preload', 'none');
         vid.setAttribute('playsinline', '');
         vid.setAttribute('width', '1200');
         vid.setAttribute('height', '675');
         if (project.image) vid.poster = project.image;
+        if (prefersReducedMotion()) {
+          vid.controls = true;
+        }
         const src = document.createElement('source');
         src.src = project.video;
         src.type = 'video/mp4';
@@ -220,16 +219,13 @@
           alt: project.imageAlt || project.title,
           loading: index === 0 ? 'eager' : 'lazy',
           width: '1200',
-          height: '675',
-          'data-still': project.image
+          height: '675'
         };
-        if (project.gif) imageAttrs['data-gif'] = project.gif;
         mediaEl = h('img', imageAttrs);
       }
 
       const mediaChildren = [
         mediaEl,
-        project.gif ? h('span', { class: 'project__preview-label', text: 'Preview GIF' }) : null,
         h('figcaption', { text: project.category + ' / ' + project.year })
       ];
 
@@ -415,9 +411,6 @@
 
     const year = document.getElementById('footer-year');
     if (year) year.textContent = new Date().getFullYear();
-
-    const meta = document.getElementById('footer-meta');
-    if (meta) meta.textContent = '';
   }
 
   function initToggles() {
@@ -450,11 +443,6 @@
 
   function setPanelState(panel, toggle, open) {
     panel.setAttribute('data-open', open ? 'true' : 'false');
-    const project = panel.closest('.project');
-    if (project && panel.classList.contains('notes')) {
-      if (open) setProjectPreview(project, true);
-      else setProjectPreview(project, false);
-    }
     if (!toggle) return;
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     if (toggle.classList.contains('text-button--small')) {
@@ -464,46 +452,28 @@
     }
   }
 
-  function setProjectPreview(project, active) {
-    if (!project || prefersReducedMotion()) return;
-    const media = project.querySelector('.project__media');
-    const image = project.querySelector('.project__media img[data-gif]');
-    if (!media || !image) return;
+  function initLazyVideos() {
+    const videos = Array.prototype.slice.call(document.querySelectorAll('.project__media video'));
+    if (!videos.length) return;
 
-    if (active) {
-      image.src = image.getAttribute('data-gif');
-      media.setAttribute('data-previewing', 'true');
+    if (prefersReducedMotion()) return;
+
+    if (!('IntersectionObserver' in window)) {
+      videos.forEach(function (video) { video.autoplay = true; });
       return;
     }
 
-    const notesOpen = project.querySelector('.notes[data-open="true"]');
-    const isInteracting = media.matches(':hover') || media.matches(':focus-within');
-    if (!notesOpen && !isInteracting) {
-      image.src = image.getAttribute('data-still');
-      media.removeAttribute('data-previewing');
-    }
-  }
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.play().catch(function () {});
+        } else {
+          entry.target.pause();
+        }
+      });
+    }, { threshold: 0.1 });
 
-  function initProjectMedia() {
-    document.querySelectorAll('.project').forEach(function (project) {
-      const media = project.querySelector('.project__media--gif');
-      if (!media) return;
-
-      media.addEventListener('pointerenter', function () {
-        setProjectPreview(project, true);
-      });
-      media.addEventListener('pointerleave', function () {
-        setProjectPreview(project, false);
-      });
-      media.addEventListener('focusin', function () {
-        setProjectPreview(project, true);
-      });
-      media.addEventListener('focusout', function () {
-        window.setTimeout(function () {
-          setProjectPreview(project, false);
-        }, 0);
-      });
-    });
+    videos.forEach(function (video) { observer.observe(video); });
   }
 
   function initRevealMotion() {
@@ -589,7 +559,7 @@
     renderLabs();
     renderContact();
     initToggles();
-    initProjectMedia();
+    initLazyVideos();
     initRevealMotion();
     initHeader();
     initActiveNav();

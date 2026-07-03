@@ -4,122 +4,129 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an interactive terminal-style portfolio website (no backend). It runs entirely in the browser using vanilla JavaScript with no build system. The site is deployed to GitHub Pages and presents Vaibhav's professional profile through a retro terminal interface.
+Single-page portfolio for Vaibhav Raheja, robotics engineer. Vanilla JavaScript, no build system, no framework, no external JS dependencies. Deployed automatically to GitHub Pages from the `main` branch. Live at https://vaibhav-raheja.github.io/
 
 ## Architecture
 
-### Core Systems
+### Files at a glance
 
-**Terminal Engine** (`assets/js/terminal.js`)
-- Core class managing input/output, command execution, and history
-- Handles key events (Enter, ArrowUp/Down, Tab, Ctrl+L), autosuggestions, and animations
-- Stores command history in localStorage
-- Manages prompt display and focus
+```
+index.html              — Static section shells; JS populates content on load
+assets/
+├── js/
+│   ├── data.js         — All portfolio content (THE file to edit for updates)
+│   ├── main.js         — Renders all sections from portfolioData; theme toggle; scroll reveal; active-nav highlighting
+│   └── fx.js           — Hero entrance animation; project-card magnetic hover
+├── css/
+│   └── style.css       — All styling; CSS custom properties for light/dark theming
+images/
+├── profile-vaibhav.jpg — Profile photo
+└── thumbs/             — Project poster images (.jpg) and clips (.mp4, some legacy .gif)
+```
 
-**Command System** (`assets/js/commands.js`)
-- Large object containing all terminal commands (help, about, education, experience, projects, skills, contact, etc.)
-- Each command is an async function receiving args, flags, and terminal instance
-- Commands call `terminal.print()` or `terminal.printWithAnimation()` to display output
-- Includes system commands (clear, history, whoami, date, neofetch), fun commands (cowsay, matrix), and navigation commands
+### Data layer (`assets/js/data.js`)
 
-**Data Layer** (`assets/js/data.js`)
-- Single `portfolioData` object containing all portfolio information
-- Structured sections: personal, education, experience, projects, skills, contact
-- Edit this file to update portfolio content (no hardcoding elsewhere)
+Single `portfolioData` object — the only place to edit content. Top-level keys:
 
-**Utilities** (`assets/js/utils.js`)
-- Color formatting functions using CSS variables (--terminal-text, --terminal-warning, etc.)
-- ASCII art collection (welcome banner, tree visualization)
-- Helper functions: formatText(), isMobile(), storage (localStorage wrapper)
-- Mobile detection for adaptive behavior
+- `personal` — name, title, location, resume URL, photo path, hero headline/lede, about paragraphs
+- `proof` — hero stat cards: `{ value, label, note }`
+- `featuredProjects` — array of in-depth project entries (see schema below)
+- `experience` — work history: `{ role, company, location, period, current, summary, details[] }`
+- `capabilities` — skills grid: `{ title, items }` (items is a comma-separated string)
+- `education` — `{ degree, institution, period }`
+- `sideProjects` — shorter project entries: `{ id, title, year, category, description, stack[], link }`
+- `contact` — `{ email, linkedin, github, resume }`
 
-**Virtual Filesystem** (`assets/js/filesystem.js`)
-- Creates a virtual directory structure mapped to commands
-- The `ls` and `tree` commands navigate this structure
-- Helps organize content logically without actual files
+### Rendering (`assets/js/main.js`)
 
-**Animations** (`assets/js/animations.js`)
-- Typing animation engine with configurable speeds
-- Methods: animate(), skip(), sleep()
-- Configuration object for animation timing
+Builds all DOM from `portfolioData` using a small `h(tag, attrs, children)` helper. No framework. Sections rendered: hero proof stats, experience timeline, featured projects, capabilities, education, side projects (Labs), about paragraphs, contact links.
 
-**Supporting Systems**
-- `media-viewer.js` — displays project images/media with modal
-- `quick-nav.js` — hamburger menu and quick navigation sidebar
+Theme toggle: reads/writes `data-theme` attribute on `<html>` and persists to `localStorage`. Respects `prefers-color-scheme` as the default when no stored preference exists.
 
-### Data Flow
+Expandable engineering-notes panels on featured project cards are wired up in `main.js` after render.
 
-1. User types in input field → Terminal listens for Enter
-2. Command is parsed (args, flags extracted)
-3. Matching command function from Commands object is executed
-4. Command calls terminal methods (print, printWithAnimation) to display output
-5. All portfolio data flows through portfolioData object
+### Visual effects (`assets/js/fx.js`)
+
+- **Hero entrance** — inline CSS transition applied via `requestAnimationFrame` on page load. (Scroll reveal lives in `main.js` — `.reveal-target`/`.is-visible` via IntersectionObserver, respects `prefers-reduced-motion`.)
+- **Project card magnetic hover** — subtle `translate` on `.project__media` following cursor position.
+
+### Theming (`assets/css/style.css`)
+
+All colors are CSS custom properties defined under `:root` (light) and `:root[data-theme="dark"]`. Key variables: `--bg`, `--paper`, `--ink`, `--muted`, `--accent`, `--line`. Typography uses Geist and Geist Mono loaded from Google Fonts.
 
 ## Common Development Tasks
 
-### Editing Portfolio Content
-Edit `assets/js/data.js`:
-- `personal` — name, bio, username, hostname, role, location, avatar
-- `education` — degrees, institutions, highlights
-- `experience` — work roles, companies, achievements, technologies
-- `projects` — descriptions, technologies, links, images
+### Edit any portfolio content
+Open `assets/js/data.js` and modify the relevant key. No other file needs to change for content-only updates.
 
-### Adding a New Command
-1. Add function to `Commands` object in `assets/js/commands.js`
-2. Import needed data from `portfolioData`
-3. Call `terminal.print()` or `terminal.printWithAnimation()` for output
-4. Update `help` command to include new command
-5. Optional: add to filesystem.js if it needs navigation structure
+### Add or update a featured project
+Add an entry to `featuredProjects`. Required fields:
 
-### Styling Changes
-- `assets/css/terminal.css` — main terminal styling, theme colors (CSS variables)
-- `assets/css/media-viewer.css` — modal for image viewing
-- CSS uses variables like `--terminal-text`, `--terminal-warning`, `--terminal-error` — change these to retheme
+```js
+{
+  id: "unique-slug",
+  title: "Project Name",
+  category: "Short descriptor",
+  year: "2024",
+  role: "Your role, Org",
+  outcome: "One-sentence result shown in the card header.",
+  summary: "2-3 sentence paragraph shown in the card body.",
+  stack: ["Tech", "Tech"],
+  facts: ["Stat 1", "Stat 2"],          // pill badges
+  image: "images/thumbs/poster.jpg",    // fallback / OG image
+  video: "images/thumbs/clip.mp4",      // optional; replaces image on hover
+  imageAlt: "Descriptive alt text",
+  links: [{ label: "Source", url: "https://..." }],  // empty array if none
+  notes: {
+    problem: "What problem this solved and why it was hard.",
+    constraints: ["Constraint 1", "Constraint 2"],
+    role: "What you specifically owned.",
+    approach: "How you approached it.",
+    tradeoffs: ["Tradeoff or decision 1", "Tradeoff 2"],
+    outcome: ["Measurable result 1", "Result 2"]
+  }
+}
+```
 
-### Responsive Design
-- Terminal detects mobile via `Utils.isMobile()`
-- Quick nav sidebar hides on mobile, replaced with hamburger menu
-- Commands render responsively (utils.formatText wraps text)
+The `notes` block powers the expandable engineering-notes panel on each project card.
 
-### Adding Images/Media
-1. Place image in `images/` folder
-2. Reference in `portfolioData` (e.g., project images)
-3. Use media-viewer.js to display (opens in modal on click)
+### Add a side project
+Add an entry to `sideProjects`:
+
+```js
+{
+  id: "unique-slug",
+  title: "Project Name",
+  year: "2024",
+  category: "Domain / Tech",
+  description: "What it is and why it exists.",
+  stack: ["Python", "ROS"],
+  link: "https://github.com/..."
+}
+```
+
+### Restyle or retheme
+Edit CSS custom properties in `assets/css/style.css` under `:root` (light) and `:root[data-theme="dark"]`. Do not hardcode colors outside these blocks.
+
+### Add media for a project
+Preferred format: **mp4 (H.264, CRF ~28, `+faststart`)** — not GIFs. GIFs are 5-10x larger for equivalent content. Keep clips short (under 30 s) and file size under ~5 MB. Encode with:
+
+```bash
+ffmpeg -i input.mov -vcodec libx264 -crf 28 -movflags +faststart -an output.mp4
+```
+
+Place the file in `images/thumbs/`, reference it as `video: "images/thumbs/output.mp4"` in `data.js`. A `.jpg` poster (`image:`) is still required as the static fallback.
 
 ## Deployment
 
-- Repository is hosted on GitHub Pages
-- Site is live at https://vaibhav-raheja.github.io/
-- Push to main branch → automatically deployed
-- No build step required (pure HTML/CSS/JS)
+- Push to `main` → GitHub Pages deploys automatically. No build step.
+- Resume PDF lives in a separate repository (`CV`) and is served from `https://vaibhav-raheja.github.io/CV/Vaibhav_Resume.pdf`. Do not look for it in this repo.
+- Google Analytics: `G-8BL61YTMC1` (wired in `index.html`).
 
-## Key Implementation Notes
+## Key Notes
 
-- **No external dependencies** — vanilla JavaScript only
-- **localStorage** — command history persists in browser
-- **CSS Variables** — all colors configurable in :root (see terminal.css)
-- **Animation System** — typing animations can be skipped with keypress
-- **Mobile First** — input focuses only on desktop (prevents keyboard popup on mobile)
-- **Breadcrumb Navigation** — dynamically updates when navigating folders (cd command)
-- **Google Analytics** — integrated via gtag (ID: G-8BL61YTMC1)
-
-## Structure Quick Reference
-
-```
-index.html                 — Main page
-assets/
-├── js/
-│   ├── data.js           — Portfolio content (edit for updates)
-│   ├── terminal.js       — Terminal engine
-│   ├── commands.js       — All command implementations
-│   ├── utils.js          — Colors, ASCII art, helpers
-│   ├── filesystem.js     — Virtual directory structure
-│   ├── animations.js     — Typing animation system
-│   ├── media-viewer.js   — Image/media modal
-│   └── quick-nav.js      — Sidebar navigation
-├── css/
-│   ├── terminal.css      — Main styling (theme colors)
-│   ├── media-viewer.css  — Image modal styles
-│   └── fontawesome-all.min.css
-└── images/              — Portfolio images
-```
+- **No external JS dependencies** — vanilla JS only; do not introduce libraries or npm.
+- **localStorage** — used for theme persistence (`theme` key).
+- **Fonts** — Geist and Geist Mono via Google Fonts; loaded in `index.html` `<head>`.
+- **SEO** — Open Graph, Twitter Card meta tags, and a `Person` JSON-LD block are in `index.html`.
+- **Accessibility** — skip link, `aria-label` on nav/buttons, `alt` text on images. Maintain these when adding content.

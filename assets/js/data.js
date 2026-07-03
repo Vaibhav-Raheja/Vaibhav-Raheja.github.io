@@ -70,7 +70,7 @@ const portfolioData = {
       stack: ["ROS", "C++", "Python", "LiDAR", "computer vision", "path planning", "sensor fusion"],
       facts: ["2nd Cyber Challenge", "3rd AutoNav", "outdoor course"],
       image: "images/thumbs/igvc_thumb.jpg",
-      gif: "images/thumbs/IGVC.gif",
+      video: "images/thumbs/igvc.mp4",
       imageAlt: "Autonomous ground vehicle from Team DARVIN",
       links: [],
       notes: {
@@ -104,7 +104,7 @@ const portfolioData = {
       stack: ["Python", "CARLA", "Hybrid A*", "PD control", "ROS"],
       facts: ["40.8% faster lap", "Hybrid A*", "dynamic obstacles", "controller tuning"],
       image: "images/thumbs/graic_thumb.jpg",
-      gif: "images/thumbs/GRAIC.gif",
+      video: "images/thumbs/graic.mp4",
       imageAlt: "Autonomous racing scene from the CARLA simulator",
       links: [
         { label: "Source", url: "https://github.com/Vaibhav-Raheja/GRAIC" }
@@ -141,7 +141,7 @@ const portfolioData = {
       stack: ["Python", "Isaac Sim", "reinforcement learning", "Unitree Go1", "sim-to-real"],
       facts: ["physical Go1 deployment", "MPC vs RL", "grass / gravel / inclines", "metric-led testing"],
       image: "images/thumbs/go1_thumb.jpg",
-      gif: "images/thumbs/Go1.gif",
+      video: "images/thumbs/go1.mp4",
       imageAlt: "Unitree Go1 quadruped robot during locomotion testing",
       links: [],
       notes: {
