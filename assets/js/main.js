@@ -128,6 +128,21 @@
     const lede = document.getElementById('hero-lede');
     if (lede) lede.textContent = personal.heroLede;
 
+    const evidence = document.querySelector('.hero__evidence');
+    if (evidence && portfolioData.proof && !evidence.querySelector('.proof-grid')) {
+      evidence.appendChild(h('dl', { class: 'proof-grid' },
+        portfolioData.proof.map(function (stat) {
+          return h('div', { class: 'proof-item' }, [
+            h('dt', { text: stat.value }),
+            h('dd', {}, [
+              h('span', { text: stat.label }),
+              h('small', { text: stat.note })
+            ])
+          ]);
+        })
+      ));
+    }
+
     const actions = document.getElementById('hero-actions');
     if (actions) {
       actions.innerHTML = '';

@@ -91,6 +91,16 @@ body::before {
   z-index: -1;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.045;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 html.motion-ready body {
   animation: gridDrift 48s linear infinite;
 }
@@ -402,6 +412,10 @@ ol {
   transform-origin: left bottom;
 }
 
+.hero-title__line:nth-of-type(3) {
+  color: var(--accent);
+}
+
 .hero-title__word {
   display: inline-block;
   white-space: pre;
@@ -499,6 +513,35 @@ ol {
   border-radius: 2px;
   box-shadow: 0 18px 40px -28px rgba(0, 0, 0, 0.45);
   transition: transform 600ms var(--ease-out), box-shadow 600ms var(--ease-out), border-color 300ms var(--ease);
+}
+
+.hero__portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0.6rem;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--accent), var(--accent)) 0 0 / 1rem 1.5px,
+    linear-gradient(var(--accent), var(--accent)) 0 0 / 1.5px 1rem,
+    linear-gradient(var(--accent), var(--accent)) 100% 0 / 1rem 1.5px,
+    linear-gradient(var(--accent), var(--accent)) 100% 0 / 1.5px 1rem,
+    linear-gradient(var(--accent), var(--accent)) 0 100% / 1rem 1.5px,
+    linear-gradient(var(--accent), var(--accent)) 0 100% / 1.5px 1rem,
+    linear-gradient(var(--accent), var(--accent)) 100% 100% / 1rem 1.5px,
+    linear-gradient(var(--accent), var(--accent)) 100% 100% / 1.5px 1rem;
+  background-repeat: no-repeat;
+  opacity: 0.9;
+}
+
+.hero__portrait-meta {
+  padding: 0.55rem 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--faint);
+  border-top: 1px solid var(--line);
 }
 
 .hero__portrait::after {
@@ -623,12 +666,32 @@ ol {
   margin-bottom: 2.25rem;
 }
 
+main {
+  counter-reset: section;
+}
+
 .section__label {
   margin: 0.45rem 0 0;
   color: var(--faint);
   font-size: var(--step-small);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.section__label::before {
+  counter-increment: section;
+  content: "0" counter(section);
+  color: var(--accent);
+}
+
+.section__label::after {
+  content: "";
+  flex: 0 0 2rem;
+  height: 1px;
+  background: var(--line-strong);
 }
 
 .section h2 {
@@ -1097,8 +1160,18 @@ ol {
 .contact__links {
   display: flex;
   flex-wrap: wrap;
+  align-items: baseline;
   gap: 1.25rem;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
+}
+
+.contact__links a:first-child {
+  flex-basis: 100%;
+  font-size: var(--step-h3);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.3em;
 }
 
 .contact__links a {
