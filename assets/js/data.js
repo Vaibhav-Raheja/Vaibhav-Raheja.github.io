@@ -16,8 +16,7 @@ const portfolioData = {
   },
 
   proof: [
-    { value: ">95%", label: "field uptime", note: "Solarbot deployed units" },
-    { value: "40%", label: "fewer false detections", note: "after fusion and calibration work" },
+    { value: ">90%", label: "field uptime", note: "Solarbot deployed units" },
     { value: "35+", label: "robotics PRs merged", note: "C++ and Python stack" },
     { value: "3+", label: "robot units delivered", note: "commercial solar sites" }
   ],
@@ -32,7 +31,7 @@ const portfolioData = {
       outcome: "Led robotics software and field integration for autonomous solar panel inspection robots across multiple commercial sites.",
       summary: "Solarbot combined LiDAR navigation, PTZ visual inspection, thermal imaging, ROS2 services, Dockerized deployment, telemetry, and remote intervention. My role moved from sensor prototyping into system ownership and team coordination.",
       stack: ["ROS2", "Docker", "Hesai LiDAR", "PTZ cameras", "Seek thermal", "AWS Kinesis WebRTC", "C++", "Python"],
-      facts: ["3+ robot units", ">95% field uptime", "40% fewer false detections", "43-46 C validation"],
+      facts: ["3+ robot units", ">90% field uptime", "43-46 C validation"],
       image: "images/thumbs/solarbot.jpg",
       video: "images/thumbs/solarbot.mp4",
       imageAlt: "Solarbot autonomous inspection robot in a solar field",
@@ -53,8 +52,8 @@ const portfolioData = {
         ],
         outcome: [
           "Helped deliver 3+ robot units for commercial solar-farm deployments",
-          "Helped maintain >95% field uptime",
-          "Helped reduce false detections by 40% through sensor fusion, calibration, and field iteration",
+          "Helped maintain >90% field uptime",
+          "Reduced false detections through sensor fusion, calibration, and field iteration",
           "Contributed 35+ merged PRs across C++ and Python robotics software"
         ]
       }
@@ -225,7 +224,7 @@ const portfolioData = {
       summary: "Led Solarbot robotics work across autonomy, perception, telemetry, deployment, and field debugging.",
       details: [
         "Integrated Hesai / Unitree LiDAR, PTZ cameras, and Seek thermal imaging through ROS2 and Docker",
-        "Helped achieve >95% field uptime and 40% fewer false detections through calibration and log-driven iteration",
+        "Helped achieve >90% field uptime and fewer false detections through calibration and log-driven iteration",
         "Built an AWS Kinesis WebRTC teleoperation proof of concept for remote monitoring and control",
         "Contributed 35+ merged PRs across C++ and Python robotics software"
       ]
