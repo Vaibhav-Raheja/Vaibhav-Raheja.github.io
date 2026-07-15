@@ -198,6 +198,41 @@ const portfolioData = {
           "Produced an interdisciplinary prototype across engineering and medical collaborators"
         ]
       }
+    },
+    {
+      id: "dishwasher-robot",
+      title: "Dishwasher Robot",
+      category: "Dual-arm manipulation",
+      year: "2024",
+      role: "Robotics Engineer, UIUC",
+      outcome: "Simulated dual-arm system that plans collision-free trajectories to pick plates from a sink and load them into a dishwasher rack.",
+      summary: "A Gazebo/MoveIt pipeline on the PAPRAS dual-arm manipulator: a right arm retrieves plates from the sink while a left arm relays them to the rack. Explored 6D pose estimation (FoundationPose, Single-Stage 6D, Gen6D), then built an analytic plate-grasp sampler and RRT* motion planning with two-arm coordination.",
+      stack: ["ROS", "MoveIt", "Gazebo", "Python", "PAPRAS", "RRT*", "YOLOv9"],
+      facts: ["Dual-arm coordination", "MoveIt RRT*", "6D pose estimation", "Gazebo sim"],
+      image: "images/thumbs/dishwasher_thumb.jpg",
+      video: "images/thumbs/dishwasher.mp4",
+      imageAlt: "PAPRAS dual-arm manipulator planning a trajectory into a sink in Gazebo simulation",
+      links: [{ label: "Source", url: "https://github.com/Vaibhav-Raheja/Dishwasher-Robot" }],
+      notes: {
+        problem: "Loading dishes is a fiddly household task: the robot has to perceive a plate's pose in a cluttered sink, plan a collision-free grasp around a thin circular object, and hand it off to a second arm for placement in the rack. We scoped it as a simulation study to iterate quickly on perception, grasping, and coordination.",
+        constraints: [
+          "Thin circular plates give feature-poor geometry that off-the-shelf 6D pose estimators struggled with",
+          "A dual-arm workspace meant plans had to stay collision-free against the sink, rack, and the other arm",
+          "Course timeline forced pragmatic fallbacks over chasing a perfect perception stack"
+        ],
+        role: "Worked across pose-estimation evaluation, the plate-grasp geometry, and the dual-arm process flow.",
+        approach: "Built a Gazebo kitchen with the PAPRAS/MOMO robot at the sink and a custom plate-grasp sampler: given a plate's pose, it parameterizes candidate gripper poses around the plate's circumference (SE(3) transform plus a Rodrigues rotation normal to the rim) and checks each with the MoveIt RRT* planner until a feasible one is found. A right/left arm state machine coordinated pick, transfer, and place.",
+        tradeoffs: [
+          "Trialed FoundationPose, Single-Stage 6D, and Gen6D; when none hit the accuracy needed, fell back to Gazebo ground-truth pose as a placeholder so the rest of the pipeline could be validated",
+          "Chose a sampling-based feasibility check over a custom multi-goal RRT* heuristic since planning could run offline at small scale",
+          "Iterated collision-box shapes, friction, mass, and ODE torsional-contact settings to fight simulated grasp slippage"
+        ],
+        outcome: [
+          "Motion planning and dual-arm coordination worked end to end: collision-free pickup and rack placement without hitting the environment",
+          "Delivered an analytic, generalizable plate-grasp sampler validated against the RRT* planner",
+          "Documented an honest limitation: simulated plates slipped from the gripper across every collision-model and physics-tuning attempt, isolating grasp contact as the open problem"
+        ]
+      }
     }
   ],
 
@@ -344,7 +379,7 @@ const portfolioData = {
   ],
 
   contact: {
-    email: "Vaibhavvraheja@gmail.com",
+    email: "vaibhavvraheja@gmail.com",
     linkedin: "https://www.linkedin.com/in/vaibhav-raheja/",
     github: "https://github.com/vaibhav-raheja",
     resume: "https://vaibhav-raheja.github.io/CV/Vaibhav_Resume.pdf"
