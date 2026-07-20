@@ -6,6 +6,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Single-page portfolio for Vaibhav Raheja, robotics engineer. Vanilla JavaScript, no build system, no framework, no external JS dependencies. Deployed automatically to GitHub Pages from the `main` branch. Live at https://vaibhav-raheja.github.io/
 
+## Content source of truth — read the CV first
+
+**Before any content update, read the resume in the sibling `CV/` repo and reconcile the site against it.** The canonical file is `../CV/Vaibhav_Resume.tex` (source) / `../CV/Vaibhav_Resume.pdf` (rendered) — absolute path `/home/vaibhav/workspace/vaibhav/CV/Vaibhav_Resume.pdf`. Do **not** sync from `Vaibhav_Resume_NVIDIA_Embedded.pdf` or anything under `applications/`; those are targeted variants, not the source of truth.
+
+The resume drives roles, companies, dates, skills, and project facts. When the site and resume disagree on an outward-facing identity fact (company name, title), surface it and confirm with the user rather than silently changing it. After editing `assets/js/data.js`, always run `node --check assets/js/data.js` — there is no build step, so a stray comma silently breaks the entire page render.
+
 ## Architecture
 
 ### Files at a glance
@@ -120,7 +126,7 @@ Place the file in `images/thumbs/`, reference it as `video: "images/thumbs/outpu
 ## Deployment
 
 - Push to `main` → GitHub Pages deploys automatically. No build step.
-- Resume PDF lives in a separate repository (`CV`) and is served from `https://vaibhav-raheja.github.io/CV/Vaibhav_Resume.pdf`. Do not look for it in this repo.
+- Resume PDF lives in the sibling `CV` repo (`../CV`), not in this repo, and is served in production from `https://vaibhav-raheja.github.io/CV/Vaibhav_Resume.pdf`. Read the local `../CV/Vaibhav_Resume.tex`/`.pdf` as the source of truth for content updates (see "Content source of truth" above).
 - Google Analytics: `G-8BL61YTMC1` (wired in `index.html`).
 
 ## Key Notes

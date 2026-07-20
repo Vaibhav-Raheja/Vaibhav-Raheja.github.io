@@ -6,8 +6,8 @@ const portfolioData = {
     resume: "https://vaibhav-raheja.github.io/CV/Vaibhav_Resume.pdf",
     photo: "images/profile-vaibhav.jpg",
     headline: "I build robot systems that survive the field.",
-    heroLede: "Robotics engineer focused on autonomy, perception, field deployment, and hardware-software integration. I have worked on deployed inspection robots, autonomous navigation vehicles, simulation-to-hardware locomotion, and medical robotics prototypes.",
-    workIntro: "Five projects selected for technical depth, integration scope, and evidence of systems thinking. Each one had constraints beyond writing an isolated algorithm.",
+    heroLede: "Robotics engineer working end to end, from real-time motor control and safety logic to autonomy, perception, and field deployment. I have worked on deployed inspection robots, autonomous navigation vehicles, simulation-to-hardware locomotion, and medical robotics prototypes.",
+    workIntro: "Six projects selected for technical depth, integration scope, and evidence of systems thinking. Each one had constraints beyond writing an isolated algorithm.",
     about: [
       "Robotics engineer, originally from Mumbai. I did my M.Eng at UIUC and am now in San Francisco. My best work sits in the gap between a working demo and a deployed system: software, sensors, actuators, operators, and field conditions.",
       "Outside the lab: I follow F1 obsessively and will explain tyre strategies and undercuts to anyone who'll sit still long enough. I play tennis, like the beach, drive whenever I get the chance, and genuinely enjoy a good networking event. I like meeting people who are building things.",
@@ -135,14 +135,16 @@ const portfolioData = {
       category: "Legged locomotion",
       year: "2024",
       role: "Developer, UIUC",
-      outcome: "Compared factory MPC and learned locomotion in Isaac Sim, then deployed the RL controller on physical Go1 hardware.",
+      outcome: "Benchmarked the factory controller against a learned RL policy in Isaac Gym and on a physical Go1; the RL controller ran ~4x faster uphill, while factory run mode completed only 50% of gravel runs.",
       summary: "The useful part was benchmark discipline: define metrics, run both controllers against the same scenarios, and check where sim-to-real transfer actually held up.",
-      stack: ["Python", "Isaac Sim", "reinforcement learning", "Unitree Go1", "sim-to-real"],
-      facts: ["physical Go1 deployment", "MPC vs RL", "grass / gravel / inclines", "metric-led testing"],
+      stack: ["Python", "Isaac Gym", "reinforcement learning", "Docker", "Unitree Go1", "sim-to-real"],
+      facts: ["physical Go1 deployment", "RL vs factory controller", "Dockerized deploy pipeline", "fitted motor power model", "grass / gravel / 30° slope"],
       image: "images/thumbs/go1_thumb.jpg",
       video: "images/thumbs/go1.mp4",
       imageAlt: "Unitree Go1 quadruped robot during locomotion testing",
-      links: [],
+      links: [
+        { label: "Source", url: "https://github.com/Vaibhav-Raheja/unitree-go1-benchmarking" }
+      ],
       notes: {
         problem: "RL locomotion can look strong in simulation, but the practical question is where it beats a factory controller on measurable behavior and whether it transfers to hardware.",
         constraints: [
@@ -151,7 +153,7 @@ const portfolioData = {
           "Terrain tests needed to go beyond flat indoor floors"
         ],
         role: "Built the benchmark workflow and deployed the learned controller for hardware checks.",
-        approach: "Used Isaac Sim to compare factory MPC and learned locomotion across velocity tracking, body stability, and terrain response, then deployed the RL controller on a physical Unitree Go1.",
+        approach: "Compared the factory controller and a learned RL policy in Isaac Gym across velocity tracking, body stability, and terrain response, then deployed the RL controller on a physical Unitree Go1.",
         tradeoffs: [
           "Separated simulator observations from hardware observations to expose transfer gaps",
           "Used terrain variation to identify where RL was useful rather than assuming it was better everywhere",
@@ -239,15 +241,16 @@ const portfolioData = {
   experience: [
     {
       role: "Founding Engineer",
-      company: "TerraWise Solutions",
+      company: "Aonics (prev. TerraWise Solutions)",
       location: "San Francisco, CA",
       period: "Mar 2026 - Present",
       current: true,
-      summary: "Building the complete robotics stack for autonomous platforms from scratch, from early architecture through hardware integration.",
+      summary: "Building the autonomy stack from scratch across ROS2, NVIDIA Jetson bring-up, and multi-arch deployment, from real-time motor control through safety and sensor integration.",
       details: [
-        "Building stop-by-obstacle behavior using LiDAR for safe autonomous navigation",
-        "Designing and implementing the full robotics stack from scratch on new autonomous platforms",
-        "Applying field-proven ROS2 and Docker deployment practices across hardware-software boundaries"
+        "Building the autonomy stack from scratch across ROS2, NVIDIA Jetson bring-up, and multi-arch Docker (ARM64/ARMv7) with a config-driven OTA deploy system",
+        "Designing a backend-agnostic motor-control layer over two drivers, ODrive on 1 Mbit/s CAN (Jetson/ROS2) and VESC serial (Pi/ROS1), with 4-wheel skid-steer turn-radius clamping to prevent inner-wheel reversal",
+        "Building redundant safety and health watchdogs: a latched emergency-stop below 22 V battery or above 80 C MOSFET temperature, plus LiDAR ROI velocity gating",
+        "Integrating a modular multi-sensor suite (Hesai LiDAR, ZED-F9P RTK GPS, thermal, PTZ, WiBotic charger) via ROS2 and Docker"
       ]
     },
     {
@@ -256,12 +259,13 @@ const portfolioData = {
       location: "Champaign, IL",
       period: "Aug 2024 - Mar 2026",
       current: false,
-      summary: "Led Solarbot robotics work across autonomy, perception, telemetry, deployment, and field debugging.",
+      summary: "Led a cross-functional Solarbot team of 8+ engineers delivering autonomous solar-panel inspection across 3+ multi-site robot units, from C++ control safety to perception, telemetry, and field deployment.",
       details: [
-        "Integrated Hesai / Unitree LiDAR, PTZ cameras, and Seek thermal imaging through ROS2 and Docker",
-        "Helped achieve >90% field uptime and fewer false detections through calibration and log-driven iteration",
-        "Built an AWS Kinesis WebRTC teleoperation proof of concept for remote monitoring and control",
-        "Contributed 35+ merged PRs across C++ and Python robotics software"
+        "Redesigned the C++ motion-controller safety state machine to detect zero-radius turns, enforce a full-stop intermediary between drive modes, and add configurable RPM ramp up/down, hardening stop logic for field safety",
+        "Shipped 35+ PRs across the Python/C++ stack spanning motor control, per-motor RPM/current telemetry, camera bring-up, and ARM64/Jetson deployment, all validated on a HIL rig I designed and built",
+        "Integrated Hesai / Unitree LiDAR, PTZ cameras, and Seek thermal imaging through ROS2 and Docker, stress-tested across solar-farm deployments in 43-46 C conditions",
+        "Built a low-latency teleoperation system using AWS Kinesis WebRTC (UDP video) and WebSocket over TCP for command/control, enabling real-time remote monitoring of field robots",
+        "Helped achieve >90% field uptime and fewer false detections through calibration and log-driven iteration"
       ]
     },
     {
@@ -301,7 +305,7 @@ const portfolioData = {
     },
     {
       title: "Robot software",
-      items: "ROS, ROS2, Gazebo, CARLA, MoveIt, message design, launch systems, drivers, state machines"
+      items: "ROS, ROS2, Gazebo, CARLA, MoveIt, real-time motor control, CAN / serial comms, safety state machines, launch systems, drivers"
     },
     {
       title: "Learning + simulation",
@@ -309,11 +313,11 @@ const portfolioData = {
     },
     {
       title: "Deployment",
-      items: "Docker, Linux, Git, AWS Kinesis, WebRTC, telemetry, remote monitoring, field logs, reproducible releases"
+      items: "Docker, multi-arch (ARM64/ARMv7), OTA, CI/CD, NVIDIA Jetson, Linux, Git, AWS Kinesis, WebRTC, telemetry, reproducible releases"
     },
     {
       title: "Hardware integration",
-      items: "Hesai LiDAR, Unitree LiDAR, PTZ cameras, Seek thermal, IMU, GPS, Arduino, Raspberry Pi, xArm5, UR5"
+      items: "Hesai / Unitree LiDAR, ZED-F9P RTK GPS, PTZ cameras, Seek thermal, ODrive, VESC, WiBotic, Arduino, Raspberry Pi, xArm5, UR5, Fusion 360 / CAD"
     }
   ],
 
@@ -363,7 +367,7 @@ const portfolioData = {
       title: "Multi-Disease Prediction System",
       year: "2022",
       category: "Healthcare ML",
-      description: "One system, four chronic diseases: kidney (LR + random forest), diabetes (LR + KNN), heart disease (RF + decision tree), pneumonia (CNN on chest X-rays). Integrated prediction pipeline, not four isolated notebooks.",
+      description: "One system, four chronic diseases: kidney (LR + random forest), diabetes (LR + KNN), heart disease (RF + decision tree), pneumonia (CNN on chest X-rays). Integrated prediction pipeline, not four isolated notebooks. Published at IEEE INCOFT 2022 (doi:10.1109/INCOFT55651.2022.10094382).",
       stack: ["Python", "scikit-learn", "CNN", "Random Forest", "KNN"],
       link: "https://github.com/Vaibhav-Raheja/Multi-Disease-Prediction-System"
     },
